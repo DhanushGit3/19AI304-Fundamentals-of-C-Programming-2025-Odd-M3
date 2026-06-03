@@ -28,7 +28,27 @@ To formulate a C program to convert a decimal number into its binary equivalent 
 ### Step 8: 
    Stop
 # Program:
+```
+#include <stdio.h>
+ void bin(int n)
+ {
+if(n==0){ return;
+} else
+{ bin(n/2);
+printf("%d",n%2);
+} } int main()
+{ int num;
+scanf("%d",&num);
+printf("%d in decimal = ",num);
+bin(num);
+printf(" in binary\n");
+return 0;
+
+}
+```
 # Output:
+<img width="1110" height="376" alt="image" src="https://github.com/user-attachments/assets/66079923-407b-4b9c-89b5-a6ad2933bfad" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -67,7 +87,67 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+```
+#include <stdio.h>
+
+int main()
+{ int n;
+int a[10][10];
+int i, j, k; int min, colIndex; int saddleRow = -1, saddleCol = -1, saddleValue;
+
+scanf("%d", &n);
+
+for (i = 0; i < n; i++)
+    for (j = 0; j < n; j++)
+        scanf("%d", &a[i][j]);
+
+printf("The matrix is\n");
+for (i = 0; i < n; i++)
+{
+    for (j = 0; j < n; j++)
+        printf("%d ", a[i][j]);
+    printf("\n");
+}
+
+for (i = 0; i < n; i++)
+{
+    min = a[i][0];
+    colIndex = 0;
+
+    for (j = 1; j < n; j++)
+    {
+        if (a[i][j] <= min)   // IMPORTANT FIX
+        {
+            min = a[i][j];
+            colIndex = j;
+        }
+    }
+
+    for (k = 0; k < n; k++)
+    {
+        if (a[k][colIndex] > min)
+            break;
+    }
+
+    if (k == n)
+    {
+        saddleRow = i;
+        saddleCol = colIndex;
+        saddleValue = min;
+    }
+}
+
+if (saddleRow != -1)
+    printf("\nSaddle point (%d, %d) : %d", saddleRow, saddleCol, saddleValue);
+else
+    printf("\nNo Saddle Point");
+
+return 0;
+}
+```
 # Output:
+<img width="731" height="446" alt="image" src="https://github.com/user-attachments/assets/ff8ddbbe-cef1-473a-b2b4-b6d9f957a467" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -101,7 +181,33 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10: 
   Stop
 # Program:
+```
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+char str[100];
+int len, i;
+
+printf("Enter a string: ");
+fgets(str, sizeof(str), stdin);  
+str[strcspn(str, "\n")] = '\0'; 
+
+len = strlen(str);
+
+printf("Reversed string: ");
+for(i = len - 1; i >= 0; i--)
+{
+    printf("%c", str[i]);
+}
+printf("\n");
+
+return 0;
+}
+```
 # Output:
+<img width="390" height="271" alt="image" src="https://github.com/user-attachments/assets/71c3d023-4602-4bc0-9e23-3ce9942ede76" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -135,7 +241,38 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8:
   Stop
 # Program:
+```
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+char str[100];
+int freq[256] = {0};
+int i;
+
+printf("Enter a string: ");
+fgets(str, sizeof(str), stdin);  
+str[strcspn(str, "\n")] = '\0'; 
+for(i = 0; str[i] != '\0'; i++)
+{
+    freq[(int)str[i]]++;
+}
+
+printf("Character frequencies:\n");
+for(i = 0; i < 256; i++)
+{
+    if(freq[i] != 0)
+    {
+        printf("%c : %d\n", i, freq[i]);
+    }
+}
+
+return 0;
+}
+```
 # Output:
+<img width="431" height="450" alt="image" src="https://github.com/user-attachments/assets/7bb1537d-d81a-4783-af18-c0c61f1548b3" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -169,7 +306,48 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8: 
   Stop
 # Program:
+```
+#include <stdio.h>
+#include <string.h>
+
+int main() { char str[200], words[50][50];
+int i, j, k = 0, wordCount = 0, flag;
+
+printf("Enter a string: ");
+fgets(str, sizeof(str), stdin);
+str[strcspn(str, "\n")] = '\0'; 
+char *token = strtok(str, " ");
+while(token != NULL)
+{
+    strcpy(words[wordCount], token);
+    wordCount++;
+    token = strtok(NULL, " ");
+}
+
+printf("String with unique words:\n");
+for(i = 0; i < wordCount; i++)
+{
+    flag = 0;
+    for(j = 0; j < i; j++)
+    {
+        if(strcmp(words[i], words[j]) == 0)
+        {
+            flag = 1; 
+            break;
+        }
+    }
+
+    if(flag == 0)
+        printf("%s ", words[i]);
+}
+
+printf("\n");
+return 0;
+}
+```
 # Output:
+<img width="552" height="278" alt="image" src="https://github.com/user-attachments/assets/5b40b1ce-41c0-4629-8e4b-6e4e5b6b4769" />
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
